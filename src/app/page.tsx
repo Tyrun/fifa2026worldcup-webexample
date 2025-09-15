@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <>
-    <h1>Sitio de demostración</h1>
+    <h1>Tienda de Fifa</h1>
     </>
   );
 }

@@ -1,0 +1,62 @@
+import { Product } from "../lib/types";
+
+// Tiny mock just to render a grid. Image can be a gray block.
+export const PRODUCTS: Product[] = [
+  {
+    id: "p1",
+    title: "Text",
+    price: 200,
+    isNew: true,
+    rating: 4.6,
+    label: "Label",
+    color: "black",
+    size: "M",
+    image: "/images/MexicoJersey.jpg",
+  },
+  {
+    id: "p2",
+    title: "Text",
+    price: 0,
+    rating: 4.2,
+    label: "Label",
+    color: "gray",
+    size: "L",
+  },
+  {
+    id: "p3",
+    title: "Text",
+    price: 0,
+    rating: 4.9,
+    label: "Label",
+    color: "white",
+    size: "S",
+  },
+  {
+    id: "p4",
+    title: "Text",
+    price: 0,
+    isNew: true,
+    rating: 4.1,
+    label: "Label",
+    color: "black",
+    size: "M",
+  },
+  {
+    id: "p5",
+    title: "Text",
+    price: 0,
+    rating: 3.8,
+    label: "Label",
+    color: "gray",
+    size: "S",
+  },
+  {
+    id: "p6",
+    title: "Text",
+    price: 0,
+    rating: 4.7,
+    label: "Label",
+    color: "white",
+    size: "L",
+  },
+];

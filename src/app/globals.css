@@ -1,1 +1,39 @@
+/* src/app/globals.css */
+
+/* 1) Carga TODO Tailwind con una sola línea (v4+) */
 @import "tailwindcss";
+
+/* 2) Tu CSS global debajo. Puedes usar @layer si quieres extender utilidades. */
+:root {
+  /* Colores de marca */
+  --brand-purple: #a885f2; /* header */
+  --brand-lime: #bff205; /* footer */
+
+  /* Opcional: expón el focus ring como variable para reusar */
+  --shadow-focus: 0 0 0 4px rgba(168, 133, 242, 0.35);
+}
+
+/* Accesibilidad: focus visible consistente para teclado */
+*:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: 8px;
+}
+
+/* UX suave en anclas dentro de la página */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Estilos base del layout */
+body {
+  color: #0d0e10; /* texto default (neutro oscuro) */
+  background: #ffffff; /* fondo claro */
+}
+
+/* (Opcional) Ejemplo de utilidades personalizadas usando @layer */
+@layer utilities {
+  .shadow-focus {
+    box-shadow: var(--shadow-focus);
+  }
+}

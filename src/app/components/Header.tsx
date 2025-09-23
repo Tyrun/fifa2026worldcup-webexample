@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import { cn } from "../lib/helpers";
+import Link from "next/link";
+import Button from "./ui/Button";
 
 /**
  * Top navigation bar
@@ -50,10 +52,11 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <button
   className="rounded-md px-3 py-1.5 text-sm"
-  style={{ backgroundColor: "#5005F2" }}
+  style={{ backgroundColor: "#5005F2" }} 
 >
-  Iniciar
-</button>
+  <Link href="/login" className="bg-blue-700 text-white px-4 py-1 rounded">
+          Iniciar
+        </Link> </button>
 <button
   className="rounded-md px-3 py-1.5 text-sm text-ink-900"
   style={{ backgroundColor: "#BFF207" }}

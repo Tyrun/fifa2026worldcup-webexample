@@ -1,70 +1,61 @@
 "use client";
-import React from "react";
-import { cn } from "../lib/helpers";
-import Link from "next/link";
-import Button from "./ui/Button";
+import { ShoppingCart, Menu } from "lucide-react";
+import React, { useState } from "react";
 
-/**
- * Top navigation bar
- * - Sticky, high contrast against brand purple background
- * - Primary nav mimics your screenshot
- */
 export default function Header() {
-  const nav = [
-    "Productos",
-    "Soluciones",
-    "Comunidad",
-    "Recursos",
-    "Precios",
-    "Contacto",
-    "Facebook",
-  ];
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header
-      className="sticky top-0 z-40 border-b border-white/20"
-      style={{ backgroundColor: "#D90416" }}
-    >
-      <div className="container flex h-14 items-center justify-between text-white">
-        {/* Logo stub - replace with your SVG/brand later */}
-        <div className="flex items-center gap-2">
-          <div className="h-6 w-6 rounded-md bg-white/90 text-ink-900 grid place-items-center text-xs font-bold">
-            g
-          </div>
-          <span className="text-sm font-semibold">FIFA 2026 Store</span>
+    <header className="bg-fifaGreen text-white py-3 px-6 relative">
+      {/* Contenedor principal */}
+      <div className="flex items-center justify-between">
+        {/* Logo + buscador */}
+        <div className="flex items-center space-x-4">
+          <h1 className="font-bold text-lg">FIFA Shop 2026</h1>
+          <input
+          type="text"
+          placeholder="Buscar..."
+          className="rounded-full px-4 py-1 text-white outline-none border border-white w-32 md:w-64"
+          />
+
         </div>
 
-        <nav className="hidden md:flex items-center gap-3">
-          {nav.map((item, i) => (
-            <a
-              key={item}
-              href="#"
-              className={cn(
-                "rounded-md px-3 py-1.5 text-sm hover:bg-white/10 focus-visible:bg-white/15",
-                i === 0 && "bg-white/20"
-              )}
-            >
-              {item}
-            </a>
-          ))}
-        </nav>
+        {/* Menú desktop */}
+        <div className="hidden md:flex items-center space-x-8">
+          <button className="flex items-center gap-1">
+            <ShoppingCart size={18} /> <span>Carro (0)</span>
+          </button>
+          <nav className="space-x-4">
+            <a href="#" className="hover:underline">Inicio</a>
+            <a href="#" className="hover:underline">Productos</a>
+            <a href="#" className="hover:underline">Contactanos</a>
+            <a href="#" className="hover:underline">Descuentos</a>
+          </nav>
+        </div>
 
-        <div className="flex items-center gap-2">
+        {/* Botón menú móvil */}
+        <div className="md:hidden flex items-center">
           <button
-  className="rounded-md px-3 py-1.5 text-sm"
-  style={{ backgroundColor: "#5005F2" }} 
->
-  <Link href="/login" className="bg-blue-700 text-white px-4 py-1 rounded">
-          Iniciar
-        </Link> </button>
-<button
-  className="rounded-md px-3 py-1.5 text-sm text-ink-900"
-  style={{ backgroundColor: "#BFF207" }}
->
-  Registrar
-</button>
+            className="p-2 rounded-md hover:bg-white/20"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <Menu size={24} />
+          </button>
         </div>
       </div>
+
+      {/* Menú móvil desplegable */}
+      {menuOpen && (
+        <div className="flex flex-col w-full bg-fifaGreen text-white mt-2 space-y-2 md:hidden px-4 py-4">
+          <button className="flex items-center gap-1">
+            <ShoppingCart size={18} /> <span>Carro (0)</span>
+          </button>
+          <a href="#" className="hover:underline">Inicio</a>
+          <a href="#" className="hover:underline">Productos</a>
+          <a href="#" className="hover:underline">Contactanos</a>
+          <a href="#" className="hover:underline">Descuentos</a>
+        </div>
+      )}
     </header>
   );
 }

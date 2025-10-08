@@ -1,39 +1,66 @@
 /* src/app/globals.css */
 
-/* 1) Carga TODO Tailwind con una sola línea (v4+) */
+/* 1) Carga Tailwind */
 @import "tailwindcss";
 
-/* 2) Tu CSS global debajo. Puedes usar @layer si quieres extender utilidades. */
+/* 2) Variables globales */
 :root {
-  /* Colores de marca */
-  --brand-purple: #a885f2; /* header */
-  --brand-lime: #bff205; /* footer */
+  /* Colores de marca por defecto */
+  --color-header-bg: #0D6759; /* violeta */
+  --color-header-text: #ffffff;
 
-  /* Opcional: expón el focus ring como variable para reusar */
-  --shadow-focus: 0 0 0 4px rgba(168, 133, 242, 0.35);
+  --color-footer-bg: #0B2E59; /* Azul verdoso*/
+  --color-footer-text: #ffffff;
+
+  /* Opcional: sombra focus */
+  --shadow-focus: 0 0 0 4px rgba(74, 50, 126, 0.35);
 }
 
-/* Accesibilidad: focus visible consistente para teclado */
+/* Modo oscuro o tema alternativo (ejemplo) */
+[data-theme="dark"] {
+  --color-header-bg: #1e1e2f;
+  --color-header-text: #ffffff;
+
+  --color-footer-bg: #ffffff;
+  --color-footer-text: #0B2E59;
+}
+
+/* Accesibilidad */
 *:focus-visible {
   outline: none;
   box-shadow: var(--shadow-focus);
   border-radius: 8px;
 }
 
-/* UX suave en anclas dentro de la página */
+/* UX suave */
 html {
   scroll-behavior: smooth;
 }
 
-/* Estilos base del layout */
+/* Estilos base */
 body {
-  color: #0d0e10; /* texto default (neutro oscuro) */
-  background: #ffffff; /* fondo claro */
+  color: #375ca7;
+  background: #0D6759;
 }
 
-/* (Opcional) Ejemplo de utilidades personalizadas usando @layer */
+/* Header y footer usan las variables */
+header {
+  background-color: var(--color-header-bg);
+  color: var(--color-header-text);
+}
+
+footer {
+  background-color: var(--color-footer-bg);
+  color: var(--color-footer-text);
+}
+
+/* Utilidad opcional */
 @layer utilities {
   .shadow-focus {
     box-shadow: var(--shadow-focus);
   }
+}
+
+:root {
+  --color-title: #ffffff; /* amarillo de ejemplo */
 }

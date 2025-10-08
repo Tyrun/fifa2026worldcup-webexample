@@ -7,13 +7,13 @@ import React from "react";
  */
 export default function SearchBar() {
   return (
-    <div className="relative w-full max-w-md">
+    <div className="relative w-full max-w-xl"> {/* Más ancho */}
       <input
         aria-label="Buscar productos"
         placeholder="Buscar..."
-        className="w-full rounded-lg border border-ink-100 bg-white px-3 py-2 pr-8 text-sm shadow-sm placeholder:text-ink-300"
+        className="w-full rounded-full border border-white border-[1px] bg-[#148B5D] px-4 py-3 pr-10 text-white placeholder-white/70 text-sm focus:outline-none"
       />
-      <span className="absolute right-2 top-1/2 -translate-y-1/2 text-ink-300">
+      <span className="absolute right-3 top-1/2 -translate-y-1/2 text-white text-lg cursor-pointer">
         🔍
       </span>
     </div>

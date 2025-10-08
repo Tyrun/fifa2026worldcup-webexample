@@ -1,46 +1,49 @@
 import React from "react";
-import Badge from "./ui/Badge";
-import { Product } from "../lib/types";
-import Image from "next/image";
 
-/**
- * A11y notes:
- * - images have alt (placeholder today)
- * - button has a descriptive name (though non-functional)
- */
-export default function ProductCard({ p }: { p: Product }) {
+interface ProductCardProps {
+  name: string;
+  price: string;
+  label?: string;
+  image?: string;
+}
+
+export default function ProductCard({ name, price, label, image }: ProductCardProps) {
   return (
-    <article className="group rounded-xl border border-ink-100 bg-white p-2 shadow-card transition hover:-translate-y-0.5 hover:shadow-md">
-      <div className="aspect-[4/3] w-full overflow-hidden rounded-lg bg-ink-100/60">
-        {/* Placeholder image block */}
-        <div className="flex h-full items-center justify-center text-ink-300 text-4xl">
-          <Image
-            src={p.image ?? "/placeholder.png"}
-            width={400}
-            height={400}
-            alt={p.title}
+    <div className="bg-white rounded-xl shadow-md w-64 flex flex-col items-center p-4">
+      {/* Cuadro de imagen */}
+      <div className="h-40 w-full rounded-md mb-3 overflow-hidden bg-gray-200 flex items-center justify-center">
+        {image ? (
+          <img
+            src={image}
+            alt={name}
+            className="w-full h-full object-cover"
           />
-        </div>
+        ) : (
+          <span className="text-gray-400">Imagen no disponible</span>
+        )}
       </div>
 
-      <div className="mt-3 space-y-1">
-        <div className="flex items-center justify-between">
-          <h4 className="text-sm font-medium text-ink-900">{p.title}</h4>
-          {p.isNew && (
-            <Badge className="bg-brand-purple/15 text-[11px] text-ink-700">
-              New
-            </Badge>
+      {/* Contenedor de texto centrado verticalmente */}
+      <div className="h-36 flex flex-col items-center justify-between text-center px-4">
+        {/* Label con altura fija */}
+        <div className="h-4 flex items-center justify-center">
+          {label && (
+            <span className="bg-green-500 text-white text-xs px-2 py-1 rounded">
+              {label}
+            </span>
           )}
         </div>
-        <div className="text-sm font-semibold text-ink-900">${p.price}</div>
+
+        {/* Nombre del producto */}
+        <h3 className="font-semibold text-base mb-1">{name}</h3>
+
+        {/* Precio */}
+        <p className="text-base font-bold text-fifaPurple mt-1">{price}</p>
       </div>
 
-      <button
-        className="mt-3 w-full rounded-lg border border-ink-100 bg-white py-1.5 text-sm text-ink-700 transition hover:bg-ink-100"
-        aria-label={`Ver ${p.title}`}
-      >
-        Ver detalle
-      </button>
-    </article>
-  );
-}
+     {/* Botón */}
+<button className="bg-fifaPurple text-white rounded-full px-4 py-2 text-sm hover:bg-purple-800"> 
+  Agregar al Carro </button>
+   </div>
+    ); 
+  }

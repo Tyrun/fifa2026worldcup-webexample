@@ -4,6 +4,9 @@ import React, { useState } from "react";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState<string>("Inicio"); // 🔹 Guarda el enlace activo
+
+  const links = ["Inicio", "Productos", "Contactanos", "Descuentos"];
 
   return (
     <header className="bg-fifaGreen text-white py-3 px-6 relative">
@@ -11,25 +14,46 @@ export default function Header() {
       <div className="flex items-center justify-between">
         {/* Logo + buscador */}
         <div className="flex items-center space-x-4">
-          <h1 className="font-bold text-lg">FIFA Shop 2026</h1>
-          <input
-          type="text"
-          placeholder="Buscar..."
-          className="rounded-full px-4 py-1 text-white outline-none border border-white w-32 md:w-64"
-          />
+          {/* Logo + texto */}
+          <div className="flex items-center space-x-2">
+            <img
+              src="/images/fifalogo.png"
+              alt="FIFA 2026 Logo"
+              className="w-14 h-14 object-contain"
+            />
+            <h1 className="font-bold text-lg">FIFA Shop 2026</h1>
+          </div>
 
+          {/* Barra de búsqueda */}
+          <input
+            type="text"
+            placeholder="Buscar..."
+            className="rounded-full px-4 py-1 text-white outline-none border border-white w-36 md:w-72 ml-2"
+          />
         </div>
 
         {/* Menú desktop */}
         <div className="hidden md:flex items-center space-x-8">
+          {/* Carrito */}
           <button className="flex items-center gap-1">
             <ShoppingCart size={18} /> <span>Carro (0)</span>
           </button>
-          <nav className="space-x-4">
-            <a href="#" className="hover:underline">Inicio</a>
-            <a href="#" className="hover:underline">Productos</a>
-            <a href="#" className="hover:underline">Contactanos</a>
-            <a href="#" className="hover:underline">Descuentos</a>
+
+          {/* Navegación */}
+          <nav className="flex space-x-2">
+            {links.map((link) => (
+              <button
+                key={link}
+                onClick={() => setActiveLink(link)}
+                className={`px-3 py-1 rounded-md transition-all duration-200 ${
+                  activeLink === link
+                    ? "bg-[#7AB317] text-white"
+                    : "hover:bg-[#7AB317]/60"
+                }`}
+              >
+                {link}
+              </button>
+            ))}
           </nav>
         </div>
 
@@ -50,10 +74,20 @@ export default function Header() {
           <button className="flex items-center gap-1">
             <ShoppingCart size={18} /> <span>Carro (0)</span>
           </button>
-          <a href="#" className="hover:underline">Inicio</a>
-          <a href="#" className="hover:underline">Productos</a>
-          <a href="#" className="hover:underline">Contactanos</a>
-          <a href="#" className="hover:underline">Descuentos</a>
+
+          {links.map((link) => (
+            <button
+              key={link}
+              onClick={() => setActiveLink(link)}
+              className={`text-left px-3 py-2 rounded-md transition-all duration-200 ${
+                activeLink === link
+                  ? "bg-[#7AB317] text-white"
+                  : "hover:bg-[#7AB317]/60"
+              }`}
+            >
+              {link}
+            </button>
+          ))}
         </div>
       )}
     </header>

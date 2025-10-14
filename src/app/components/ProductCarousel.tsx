@@ -9,23 +9,23 @@ export default function ProductCarousel() {
   const products = [
     {
       name: "Zapatillas oficiales de Futbolista Profesional",
-      price: "USD 74.99",
+      price: "$1,499MXN",
       image: "/images/zapatillas-futbol.jpg",
     },
     {
       name: "Camiseta Oficial del Equipo Más Grande del Mundo",
-      price: "USD 299.99",
+      price: "$5,499MXN",
       label: "Nuevo",
       image: "/images/camisaAMERICA.webp",
     },
     {
       name: "Guantes de Portero Oficial de Profesional",
-      price: "USD 59.99",
+      price: "$1,119MXN",
       image: "/images/guantes-futbol.jpeg",
     },
     {
       name: "Espinilleras de Futbol Oficiales",
-      price: "USD 14.99",
+      price: "$299MXN",
       image: "/images/espinilleraOficial.webp",
     },
   ];

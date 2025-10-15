@@ -89,8 +89,8 @@ export default function ContactPage() {
               <div className="text-center pt-2">
                 <button
                   type="submit"
-                  className="bg-fifaGreen hover:opacity-90 text-white font-semibold px-6 py-2 rounded-md"
-                >
+                 className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2 rounded-md transform transition duration-200 hover:scale-105"
+                    >
                   Enviar
                 </button>
               </div>

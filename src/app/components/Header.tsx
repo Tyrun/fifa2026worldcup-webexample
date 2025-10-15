@@ -4,10 +4,11 @@ import { ShoppingCart, Menu } from "lucide-react";
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState<string>("Inicio");
+  const pathname = usePathname(); // <-- Hook para obtener la ruta actual
 
   const links = [
     { name: "Inicio", href: "/" },
@@ -63,9 +64,8 @@ export default function Header() {
               <Link
                 key={link.name}
                 href={link.href}
-                onClick={() => setActiveLink(link.name)}
                 className={`px-2 py-[3px] rounded-md text-sm transition-all duration-200 ${
-                  activeLink === link.name
+                  pathname === link.href
                     ? "bg-[#7AB317] text-white"
                     : "hover:bg-[#7AB317]/60"
                 }`}
@@ -98,12 +98,9 @@ export default function Header() {
             <Link
               key={link.name}
               href={link.href}
-              onClick={() => {
-                setActiveLink(link.name);
-                setMenuOpen(false);
-              }}
+              onClick={() => setMenuOpen(false)}
               className={`text-left px-3 py-1.5 rounded-md text-sm transition-all duration-200 ${
-                activeLink === link.name
+                pathname === link.href
                   ? "bg-[#7AB317] text-white"
                   : "hover:bg-[#7AB317]/60"
               }`}

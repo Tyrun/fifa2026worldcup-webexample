@@ -27,7 +27,7 @@ export default function Header() {
             <Image
               src="/images/fifalogo.png"
               alt="FIFA 2026 Logo"
-              width={40} // 🔹 Logo más pequeño
+              width={40}
               height={40}
               className="object-contain"
               priority
@@ -41,7 +41,12 @@ export default function Header() {
           <input
             type="text"
             placeholder="Buscar..."
-            className="rounded-full px-3 py-[3px] text-white outline-none border border-white w-28 sm:w-52 md:w-64 bg-transparent placeholder-white/70 text-sm"
+            className="
+              rounded-full px-3 py-[3px] text-white outline-none border border-white 
+              bg-transparent placeholder-white/70 text-sm 
+              w-38 sm:w-52 md:w-26 lg:w-90
+              transition-all duration-300
+            "
           />
         </div>
 

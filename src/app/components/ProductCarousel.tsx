@@ -1,11 +1,10 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import ProductCard from "./ProductCard";
 
 /**
  * Carrusel de productos destacados con fondo dinámico
- * Compatible con Vercel (usa imágenes desde /public/images)
+ * (Tarjetas con transparencia ligera tipo “glass”)
  */
 export default function ProductCarousel() {
   const products = [
@@ -49,8 +48,8 @@ export default function ProductCarousel() {
   }, [backgrounds.length]);
 
   return (
-    <section className="relative py-10 text-center text-white overflow-hidden">
-      {/* Fondo dinámico con transición */}
+    <section className="relative py-10 text-white text-center overflow-hidden">
+      {/* Fondo con transición */}
       {backgrounds.map((bg, i) => (
         <div
           key={i}
@@ -68,16 +67,16 @@ export default function ProductCarousel() {
       {/* Capa de oscurecimiento */}
       <div className="absolute inset-0 bg-black/60" />
 
-      {/* Contenido principal */}
+      {/* Contenido */}
       <div className="relative z-10">
         <h2
-          className="text-3xl font-bold mb-3"
+          className="text-3xl font-bold mb-3 drop-shadow-lg"
           style={{ color: "var(--color-title, #fff)" }}
         >
           Catálogo de Productos
         </h2>
 
-        <p className="text-gray-200 mb-8">
+        <p className="text-gray-200 mb-8 drop-shadow-md">
           Explora nuestra enorme colección de productos oficiales FIFA 2026
         </p>
 
@@ -85,26 +84,22 @@ export default function ProductCarousel() {
           {products.map((p, i) => (
             <div
               key={i}
-              className="bg-white/10 backdrop-blur-md rounded-2xl shadow-lg p-4 w-64 text-white hover:scale-105 transition-transform duration-300"
+              className="
+                bg-white/15 
+                backdrop-blur-sm 
+                rounded-2xl 
+                shadow-lg 
+                p-4 
+                w-64 
+                text-black 
+                hover:scale-105 
+                transition-transform 
+                duration-300 
+                border 
+                border-white/20
+              "
             >
-              <div className="relative w-full h-48 mb-3">
-                <Image
-                  src={p.image}
-                  alt={p.name}
-                  fill
-                  className="object-cover rounded-xl"
-                  sizes="(max-width: 768px) 100vw, 300px"
-                />
-              </div>
-
-              {p.label && (
-                <span className="inline-block bg-yellow-400 text-black px-2 py-1 text-xs font-semibold rounded-full mb-2">
-                  {p.label}
-                </span>
-              )}
-
-              <h3 className="font-semibold text-lg">{p.name}</h3>
-              <p className="text-yellow-300 font-bold mt-1">{p.price}</p>
+              <ProductCard {...p} />
             </div>
           ))}
         </div>

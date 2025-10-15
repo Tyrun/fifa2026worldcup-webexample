@@ -1,36 +1,37 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
-import ProductCard from "./ProductCard";
+import Image from "next/image";
 
 /**
  * Carrusel de productos destacados con fondo dinámico
+ * Compatible con Vercel (usa imágenes desde /public/images)
  */
 export default function ProductCarousel() {
   const products = [
     {
       name: "Zapatillas oficiales de Futbolista Profesional",
-      price: "$1,499MXN",
+      price: "$1,499 MXN",
       image: "/images/zapatillas-futbol.jpg",
     },
     {
       name: "Camiseta Oficial del Equipo Más Grande del Mundo",
-      price: "$5,499MXN",
+      price: "$5,499 MXN",
       label: "Nuevo",
       image: "/images/camisaAMERICA.webp",
     },
     {
       name: "Guantes de Portero Oficial de Profesional",
-      price: "$1,119MXN",
+      price: "$1,119 MXN",
       image: "/images/guantes-futbol.jpeg",
     },
     {
       name: "Espinilleras de Futbol Oficiales",
-      price: "$299MXN",
+      price: "$299 MXN",
       image: "/images/espinilleraOficial.webp",
     },
   ];
 
-  // Fondo dinámico del carrusel
   const backgrounds = [
     "/images/futbol1.jpg",
     "/images/futbol2.jpeg",
@@ -48,8 +49,8 @@ export default function ProductCarousel() {
   }, [backgrounds.length]);
 
   return (
-    <section className="relative py-10 text-black text-center overflow-hidden">
-      {/* Fondo con transición */}
+    <section className="relative py-10 text-center text-white overflow-hidden">
+      {/* Fondo dinámico con transición */}
       {backgrounds.map((bg, i) => (
         <div
           key={i}
@@ -67,11 +68,11 @@ export default function ProductCarousel() {
       {/* Capa de oscurecimiento */}
       <div className="absolute inset-0 bg-black/60" />
 
-      {/* Contenido */}
+      {/* Contenido principal */}
       <div className="relative z-10">
         <h2
           className="text-3xl font-bold mb-3"
-          style={{ color: "var(--color-title)" }}
+          style={{ color: "var(--color-title, #fff)" }}
         >
           Catálogo de Productos
         </h2>
@@ -82,7 +83,29 @@ export default function ProductCarousel() {
 
         <div className="flex justify-center gap-6 flex-wrap">
           {products.map((p, i) => (
-            <ProductCard key={i} {...p} />
+            <div
+              key={i}
+              className="bg-white/10 backdrop-blur-md rounded-2xl shadow-lg p-4 w-64 text-white hover:scale-105 transition-transform duration-300"
+            >
+              <div className="relative w-full h-48 mb-3">
+                <Image
+                  src={p.image}
+                  alt={p.name}
+                  fill
+                  className="object-cover rounded-xl"
+                  sizes="(max-width: 768px) 100vw, 300px"
+                />
+              </div>
+
+              {p.label && (
+                <span className="inline-block bg-yellow-400 text-black px-2 py-1 text-xs font-semibold rounded-full mb-2">
+                  {p.label}
+                </span>
+              )}
+
+              <h3 className="font-semibold text-lg">{p.name}</h3>
+              <p className="text-yellow-300 font-bold mt-1">{p.price}</p>
+            </div>
           ))}
         </div>
       </div>
